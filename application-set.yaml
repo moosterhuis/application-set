@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: test-app
+spec:
+  generators:
+    - list:
+        elements:
+          - namespace: test-app-ont
+          - namespace: test-app-tst
+  template:
+    metadata:
+      name: test-app
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/moosterhuis/test-app.git
+        targetRevision: main
+        path: .
+      destination:
+        server: '{{"{{"}}url{{"}}"}}'
+        namespace: '{{"{{"}}namespace{{"}}"}}'
+      syncPolicy:
+        automated:
+          prune: true
