@@ -11,8 +11,7 @@ spec:
   template:
     metadata:
       name: test-app
-      labels:
-        env: "{{namespace}}"
+      namespace: "{{namespace}}"
     spec:
       project: default
       source:
