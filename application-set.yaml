@@ -6,8 +6,8 @@ spec:
   generators:
     - list:
         elements:
-          - namespace: ont
-          - namespace: tst
+          - namespace: michiel-test-ont
+          - namespace: michiel-test-tst
   template:
     metadata:
       name: "application-{{namespace}}"
@@ -16,11 +16,8 @@ spec:
       project: default
       source:
         repoURL: https://github.com/moosterhuis/test-app.git
-        targetRevision: main
+        targetRevision: HEAD
         path: .
-        helm:
-          valueFiles:
-            - "/env/values-{{namespace}}.yaml"
       destination:
         server: 'https://kubernetes.default.svc'
         namespace: "{{namespace}}"
