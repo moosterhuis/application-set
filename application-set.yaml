@@ -1,15 +1,13 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: application
+  name: application-ot
 spec:
   generators:
     - list:
         elements:
           - namespace: ont
-            sync: "        automated: {}"
           - namespace: tst
-            sync: "{}"
   template:
     metadata:
       name: "application-{{namespace}}"
@@ -26,4 +24,31 @@ spec:
       destination:
         server: 'https://kubernetes.default.svc'
         namespace: "{{namespace}}"
-      syncPolicy: "{{sync}}"
+
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: application-ap
+spec:
+  generators:
+    - list:
+        elements:
+          - namespace: acc
+          - namespace: prd
+  template:
+    metadata:
+      name: "application-{{namespace}}"
+      namespace: "{{namespace}}"
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/moosterhuis/test-app.git
+        targetRevision: HEAD
+        path: .
+        helm:
+          valueFiles:
+            - "/env/values-{{namespace}}.yaml"
+      destination:
+        server: 'https://kubernetes.default.svc'
+        namespace: "{{namespace}}"
