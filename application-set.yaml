@@ -10,7 +10,7 @@ spec:
           - namespace: tst
   template:
     metadata:
-      name: "application"
+      name: "application-{{namespace}}"
       namespace: "{{namespace}}"
     spec:
       project: default
