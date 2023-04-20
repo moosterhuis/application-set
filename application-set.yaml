@@ -6,8 +6,8 @@ spec:
   generators:
     - list:
         elements:
-          - namespace: michiel-test-ont
-          - namespace: michiel-test-tst
+          - namespace: ont
+          - namespace: tst
   template:
     metadata:
       name: "application-{{namespace}}"
