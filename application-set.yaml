@@ -18,6 +18,9 @@ spec:
         repoURL: https://github.com/moosterhuis/test-app.git
         targetRevision: HEAD
         path: .
+        helm:
+          valueFiles:
+            - "/env/values-{{namespace}}.yaml"
       destination:
         server: 'https://kubernetes.default.svc'
         namespace: "{{namespace}}"
