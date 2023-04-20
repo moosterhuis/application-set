@@ -9,6 +9,7 @@ spec:
           - namespace: ont
             sync: "        automated: {}"
           - namespace: tst
+            sync: "{}"
   template:
     metadata:
       name: "application-{{namespace}}"
