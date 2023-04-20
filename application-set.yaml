@@ -19,7 +19,7 @@ spec:
         path: .
       destination:
         server: 'https://kubernetes.default.svc'
-        namespace: '{% raw %}{{namespace}}{% endraw %}'
+        namespace: "{% raw %}{{namespace}}{% endraw %}"
       syncPolicy:
         automated:
           prune: true
