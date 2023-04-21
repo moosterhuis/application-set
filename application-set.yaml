@@ -9,25 +9,25 @@ spec:
         elements:
           - appName: app1
             namespace: ont
-            repoURL: "https://github.com/moosterhuis/test-app.git"
+            repoURL: "https://github.com/moosterhuis/test-app-1.git"
             targetRevision: HEAD
             path: .
             valueFiles: "/env/values-ont.yaml"
           - appName: app1
             namespace: tst
-            repoURL: "https://github.com/moosterhuis/test-app.git"
+            repoURL: "https://github.com/moosterhuis/test-app-1.git"
             targetRevision: HEAD
             path: .
             valueFiles: "/env/values-tst.yaml"
           - appName: app2
             namespace: ont
-            repoURL: "https://github.com/moosterhuis/test-app.git"
+            repoURL: "https://github.com/moosterhuis/test-app-2.git"
             targetRevision: HEAD
             path: .
             valueFiles: "/env/values-ont.yaml"
           - appName: app2
             namespace: tst
-            repoURL: "https://github.com/moosterhuis/test-app.git"
+            repoURL: "https://github.com/moosterhuis/test-app-2.git"
             targetRevision: HEAD
             path: .
             valueFiles: "/env/values-tst.yaml"
