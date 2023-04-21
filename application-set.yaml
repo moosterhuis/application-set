@@ -11,25 +11,25 @@ spec:
             namespace: ont
             repoURL: "https://github.com/moosterhuis/test-app.git"
             targetRevision: HEAD
-            path:
+            path: .
             valueFiles: "/env/values-ont.yaml"
           - appName: app1
             namespace: tst
             repoURL: "https://github.com/moosterhuis/test-app.git"
             targetRevision: HEAD
-            path: "/env/values-tst.yaml"
+            path: .
             valueFiles: "/env/values-tst.yaml"
           - appName: app2
             namespace: ont
             repoURL: "https://github.com/moosterhuis/test-app.git"
             targetRevision: HEAD
-            path:
+            path: .
             valueFiles: "/env/values-ont.yaml"
           - appName: app2
             namespace: tst
             repoURL: "https://github.com/moosterhuis/test-app.git"
             targetRevision: HEAD
-            path: "/env/values-tst.yaml"
+            path: .
             valueFiles: "/env/values-tst.yaml"
   template:
     metadata:
@@ -42,6 +42,7 @@ spec:
         targetRevision: "{{targetRevision}}"
         path: "{{path}}"
         helm:
+          name: "{{appName}}"
           valueFiles:
             - "{{valueFiles}}"
       destination:
