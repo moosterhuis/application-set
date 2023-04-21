@@ -38,7 +38,7 @@ spec:
     spec:
       project: default
       source:
-        repoURL: "{{repoUrl}}"
+        repoURL: "{{repoURL}}"
         targetRevision: "{{targetRevision}}"
         path: "{{path}}"
         helm:
