@@ -1,57 +1,55 @@
+## ------------ ONT & TST------------ ##
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: application-ot
+  name: application-ont-test
 spec:
   generators:
     - list:
         elements:
-          - namespace: ont
-          - namespace: tst
+          - appName: app1
+            namespace: ont
+            repoURL: "https://github.com/moosterhuis/test-app.git"
+            targetRevision: HEAD
+            path:
+            valueFiles: "/env/values-ont.yaml"
+          - appName: app1
+            namespace: tst
+            repoURL: "https://github.com/moosterhuis/test-app.git"
+            targetRevision: HEAD
+            path: "/env/values-tst.yaml"
+            valueFiles: "/env/values-tst.yaml"
+          - appName: app2
+            namespace: ont
+            repoURL: "https://github.com/moosterhuis/test-app.git"
+            targetRevision: HEAD
+            path:
+            valueFiles: "/env/values-ont.yaml"
+          - appName: app2
+            namespace: tst
+            repoURL: "https://github.com/moosterhuis/test-app.git"
+            targetRevision: HEAD
+            path: "/env/values-tst.yaml"
+            valueFiles: "/env/values-tst.yaml"
   template:
     metadata:
-      name: "application-{{namespace}}"
+      name: "{{appName}}-{{namespace}}"
       namespace: "{{namespace}}"
     spec:
       project: default
       source:
-        repoURL: https://github.com/moosterhuis/test-app.git
-        targetRevision: HEAD
-        path: .
+        repoURL: "{{repoUrl}}"
+        targetRevision: "{{targetRevision}}"
+        path: "{{path}}"
         helm:
+          name: "{{appName}}"
           valueFiles:
-            - "/env/values-{{namespace}}.yaml"
+            - "{{valueFiles}}"
       destination:
         server: 'https://kubernetes.default.svc'
         namespace: "{{namespace}}"
       syncPolicy:
         automated:
           prune: true
-
 ---
-apiVersion: argoproj.io/v1alpha1
-kind: ApplicationSet
-metadata:
-  name: application-ap
-spec:
-  generators:
-    - list:
-        elements:
-          - namespace: acc
-          - namespace: prd
-  template:
-    metadata:
-      name: "application-{{namespace}}"
-      namespace: "{{namespace}}"
-    spec:
-      project: default
-      source:
-        repoURL: https://github.com/moosterhuis/test-app.git
-        targetRevision: HEAD
-        path: .
-        helm:
-          valueFiles:
-            - "/env/values-{{namespace}}.yaml"
-      destination:
-        server: 'https://kubernetes.default.svc'
-        namespace: "{{namespace}}"
+## ------------ ACC & PROD------------ ##
